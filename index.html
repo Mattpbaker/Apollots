@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Training Session - Strategy Report</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Navigation Arrows -->
+        <button class="nav-arrow nav-arrow-left" id="prevBtn" aria-label="Previous slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </button>
+        <button class="nav-arrow nav-arrow-right" id="nextBtn" aria-label="Next slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </button>
+
+        <!-- Slide Counter -->
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">12</span>
+        </div>
+
+        <!-- Slide 1: Check-in -->
+        <section class="slide active" data-duration="5" data-section="Check-in">
+            <div class="slide-content">
+                <div class="section-header">
+                    <h1 class="section-title">Check-in</h1>
+                    <div class="timer" id="timer-1">
+                        <span class="timer-label">Time remaining:</span>
+                        <span class="timer-value">05:00</span>
+                    </div>
+                </div>
+                <div class="check-in-out-content">
+                    <label for="checkin-question" class="question-label">Question for the team:</label>
+                    <textarea id="checkin-question" class="question-input" placeholder="Enter your check-in question here...">How are you feeling about the progress we've made so far?</textarea>
+                    <div class="question-hint">This question will be asked to everyone at the start of the session</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Announcements -->
+        <section class="slide" data-duration="10" data-section="Announcements">
+            <div class="slide-content">
+                <div class="section-header">
+                    <h1 class="section-title">Announcements</h1>
+                    <div class="timer" id="timer-2">
+                        <span class="timer-label">Time remaining:</span>
+                        <span class="timer-value">10:00</span>
+                    </div>
+                </div>
+                <div class="announcements-content">
+                    <div class="content-area">
+                        <textarea id="announcements-text" class="announcements-textarea" placeholder="Add your announcements here..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Workshop by George -->
+        <section class="slide" data-duration="60" data-section="Workshop">
+            <div class="slide-content">
+                <div class="section-header">
+                    <h1 class="section-title">George's Workshop</h1>
+                    <div class="timer" id="timer-3">
+                        <span class="timer-label">Time remaining:</span>
+                        <span class="timer-value">60:00</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Activity Log Review -->
+        <section class="slide" data-duration="10" data-section="Activity Log">
+            <div class="slide-content">
+                <div class="section-header">
+                    <h1 class="section-title">Activity Log Review</h1>
+                    <div class="timer" id="timer-4">
+                        <span class="timer-label">Time remaining:</span>
+                        <span class="timer-value">10:00</span>
+                    </div>
+                </div>
+                <div class="activity-log-content">
+                    <div class="content-area">
+                        <p class="placeholder-text">Review team activity logs...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: EDI Section -->
+        <section class="slide" data-duration="20" data-section="EDI">
+            <div class="slide-content">
+                <div class="section-header">
+                    <h1 class="section-title">EDI Section</h1>
+                    <div class="presenter-badge">Ares</div>
+                    <div class="timer" id="timer-5">
+                        <span class="timer-label">Time remaining:</span>
+                        <span class="timer-value">20:00</span>
+                    </div>
+                </div>
+                <div class="edi-content">
+                    <div class="policy-sections">
+                        <!-- EDI Policy Section -->
+                        <div class="policy-section">
+                            <div class="policy-header">
+                                <h2>EDI Policy</h2>
+                                <a href="https://docs.google.com/document/d/1ytvOpU328xP1jNMpfsfCSJZoKlRwvEkfxP8b-Anmlec/edit?tab=t.0#heading=h.7ipex8gjlyw" target="_blank" class="policy-link-icon" title="Open EDI Policy Document">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                        <polyline points="10 9 9 9 8 9"/>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="policy-controls">
+                                <select class="policy-status-select" id="edi-policy-status">
+                                    <option value="">Select status...</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="needs-work">Needs further work</option>
+                                </select>
+                            </div>
+                            <div class="policy-notes">
+                                <textarea class="policy-notes-textarea" id="edi-policy-notes" placeholder="Add notes about the EDI Policy..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Sexual Harassment Policy Section -->
+                        <div class="policy-section">
+                            <div class="policy-header">
+                                <h2>Sexual Harassment Policy</h2>
+                                <a href="https://docs.google.com/document/d/1ZiEJPlyBvQsGHywtyNdezQq0hQwWqPanQDgb3BXS5vg/edit?tab=t.0#heading=h.w8cn5v1ptc72" target="_blank" class="policy-link-icon" title="Open Sexual Harassment Policy Document">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                        <polyline points="10 9 9 9 8 9"/>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="policy-controls">
+                                <select class="policy-status-select" id="sexual-harassment-policy-status">
+                                    <option value="">Select status...</option>
+                                    <option value="approved">Approved</option>
+                                    <option value="needs-work">Needs further work</option>
+                                </select>
+                            </div>
+                            <div class="policy-notes">
+                                <textarea class="policy-notes-textarea" id="sexual-harassment-policy-notes" placeholder="Add notes about the Sexual Harassment Policy..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Status of New Roles -->
+        <section class="slide" data-duration="10" data-section="Roles">
+            <div class="slide-content">
+                <div class="section-header">
+                    <h1 class="section-title">Status of New Roles</h1>
+                    <div class="timer" id="timer-6">
+                        <span class="timer-label">Time remaining:</span>
+                        <span class="timer-value">10:00</span>
+                    </div>
+                </div>
+                <div class="roles-content">
+                    <div class="roles-grid">
+                        <div class="role-card">
+                            <h3>Task Manager</h3>
+                            <div class="role-assignment">
+                                <input type="text" class="role-name-input" placeholder="Enter name..." data-role="task-manager">
+                            </div>
+                            <div class="role-status-box">
+                                <span class="role-status-indicator unassigned">Unassigned</span>
+                            </div>
+                        </div>
+                        <div class="role-card">
+                            <h3>Video Director</h3>
+                            <div class="role-assignment">
+                                <input type="text" class="role-name-input" placeholder="Enter name..." data-role="video-director">
+                            </div>
+                            <div class="role-status-box">
+                                <span class="role-status-indicator unassigned">Unassigned</span>
+                            </div>
+                        </div>
+                        <div class="role-card">
+                            <h3>Videographer</h3>
+                            <div class="role-assignment">
+                                <input type="text" class="role-name-input" placeholder="Enter name..." data-role="videographer">
+                            </div>
+                            <div class="role-status-box">
+                                <span class="role-status-indicator unassigned">Unassigned</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="extra-roles-section">
+                        <button class="extra-roles-toggle" id="extraRolesToggle">
+                            <span class="toggle-text">Extra Roles</span>
+                            <svg class="toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 6l4 4 4-4"/>
+                            </svg>
+                        </button>
+                        <div class="extra-roles-content" id="extraRolesContent">
+                            <div class="roles-grid">
+                                <div class="role-card role-card-editable">
+                                    <input type="text" class="role-title-input" placeholder="Role title..." value="Extra Role 1" data-role-title="extra-role-1">
+                                    <div class="role-assignment">
+                                        <input type="text" class="role-name-input" placeholder="Enter name..." data-role="extra-role-1">
+                                    </div>
+                                    <div class="role-status-box">
+                                        <span class="role-status-indicator unassigned">Unassigned</span>
+                                    </div>
+                                </div>
+                                <div class="role-card role-card-editable">
+                                    <input type="text" class="role-title-input" placeholder="Role title..." value="Extra Role 2" data-role-title="extra-role-2">
+                                    <div class="role-assignment">
+                                        <input type="text" class="role-name-input" placeholder="Enter name..." data-role="extra-role-2">
+                                    </div>
+                                    <div class="role-status-box">
+                                        <span class="role-status-indicator unassigned">Unassigned</span>
+                                    </div>
+                                </div>
+                                <div class="role-card role-card-editable">
+                                    <input type="text" class="role-title-input" placeholder="Role title..." value="Extra Role 3" data-role-title="extra-role-3">
+                                    <div class="role-assignment">
+                                        <input type="text" class="role-name-input" placeholder="Enter name..." data-role="extra-role-3">
+                                    </div>
+                                    <div class="role-status-box">
+                                        <span class="role-status-indicator unassigned">Unassigned</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Business Development - Marketing Clinic -->
+        <section class="slide" data-duration="40" data-section="Marketing Clinic">
+            <div class="slide-content">
+                <div class="section-header">
+                    <h1 class="section-title">Business Development</h1>
+                    <h2 class="section-subtitle">Marketing Clinic</h2>
+                    <div class="presenter-badge">Matt</div>
+                    <div class="timer" id="timer-7">
+                        <span class="timer-label">Time remaining:</span>
+                        <span class="timer-value">40:00</span>
+                    </div>
+                </div>
+                <div class="marketing-clinic-content">
+                    <div class="clinic-tabs">
+                        <button class="tab-btn active" data-tab="marketing-plans">Marketing Plans</button>
+                        <button class="tab-btn" data-tab="content-ideas">Content Ideas</button>
+                        <button class="tab-btn" data-tab="tracking-systems">Tracking Systems</button>
+                        <button class="tab-btn" data-tab="business-processes">Business Process Frameworks</button>
+                    </div>
+
+                    <!-- Marketing Plans Tab -->
+                    <div class="tab-content active" id="marketing-plans">
+                        <div class="clinic-section">
+                            <h3>Marketing Plan Template</h3>
+                            <form class="marketing-form">
+                                <div class="form-group">
+                                    <label>Venture Name:</label>
+                                    <input type="text" id="venture-name" placeholder="Enter venture name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Target Audience:</label>
+                                    <textarea id="target-audience" placeholder="Describe your target audience"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Key Objectives:</label>
+                                    <textarea id="key-objectives" placeholder="List your marketing objectives"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Marketing Channels:</label>
+                                    <div class="checkbox-group">
+                                        <label><input type="checkbox" id="channel-social"> Social Media</label>
+                                        <label><input type="checkbox" id="channel-email"> Email Marketing</label>
+                                        <label><input type="checkbox" id="channel-content"> Content Marketing</label>
+                                        <label><input type="checkbox" id="channel-paid"> Paid Advertising</label>
+                                        <label><input type="checkbox" id="channel-events"> Events/Networking</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Budget & Timeline:</label>
+                                    <textarea id="budget-timeline" placeholder="Outline budget and timeline"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Content Ideas Tab -->
+                    <div class="tab-content" id="content-ideas">
+                        <div class="clinic-section">
+                            <h3>Content Ideas Generator</h3>
+                            <div class="content-ideas-grid">
+                                <div class="idea-card">
+                                    <h4>Blog Posts</h4>
+                                    <textarea id="content-blog" placeholder="Brainstorm blog post ideas..."></textarea>
+                                </div>
+                                <div class="idea-card">
+                                    <h4>Social Media Posts</h4>
+                                    <textarea id="content-social" placeholder="Social media content ideas..."></textarea>
+                                </div>
+                                <div class="idea-card">
+                                    <h4>Video Content</h4>
+                                    <textarea id="content-video" placeholder="Video content concepts..."></textarea>
+                                </div>
+                                <div class="idea-card">
+                                    <h4>Infographics</h4>
+                                    <textarea id="content-infographics" placeholder="Infographic topics..."></textarea>
+                                </div>
+                            </div>
+                            <div class="content-calendar">
+                                <h4>Content Calendar</h4>
+                                <textarea id="content-calendar" class="calendar-textarea" placeholder="Plan your content schedule here..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tracking Systems Tab -->
+                    <div class="tab-content" id="tracking-systems">
+                        <div class="clinic-section">
+                            <h3>Marketing Tracking System</h3>
+                            <form class="tracking-form">
+                                <div class="form-group">
+                                    <label>Key Metrics to Track:</label>
+                                    <div class="metrics-grid">
+                                        <label><input type="checkbox" id="metric-traffic"> Website Traffic</label>
+                                        <label><input type="checkbox" id="metric-engagement"> Social Media Engagement</label>
+                                        <label><input type="checkbox" id="metric-leads"> Lead Generation</label>
+                                        <label><input type="checkbox" id="metric-conversion"> Conversion Rate</label>
+                                        <label><input type="checkbox" id="metric-email"> Email Open Rate</label>
+                                        <label><input type="checkbox" id="metric-roi"> ROI</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tracking Tools:</label>
+                                    <input type="text" id="tracking-tools" placeholder="Google Analytics, Hootsuite, etc.">
+                                </div>
+                                <div class="form-group">
+                                    <label>Reporting Frequency:</label>
+                                    <select id="reporting-frequency">
+                                        <option value="">Select frequency...</option>
+                                        <option value="Daily">Daily</option>
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Monthly">Monthly</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>KPIs Dashboard:</label>
+                                    <textarea id="kpis-dashboard" placeholder="Define your key performance indicators"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Business Process Frameworks Tab -->
+                    <div class="tab-content" id="business-processes">
+                        <div class="clinic-section">
+                            <h3>Business Process Framework</h3>
+                            <div class="process-framework">
+                                <div class="process-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>Planning</h4>
+                                        <textarea id="process-planning" placeholder="Define planning processes..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>Execution</h4>
+                                        <textarea id="process-execution" placeholder="Define execution workflows..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>Monitoring</h4>
+                                        <textarea id="process-monitoring" placeholder="Define monitoring procedures..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="process-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>Optimization</h4>
+                                        <textarea id="process-optimization" placeholder="Define optimization strategies..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clinic-actions">
+                                <button type="button" class="save-btn" id="save-marketing-clinic">Save & Download PDF</button>
+                                <button type="button" class="start-again-btn" id="start-again-btn" style="display: none;">Start Again</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Strategy Report - Task Updates -->
+        <section class="slide" data-duration="10" data-section="Task Updates">
+            <div class="slide-content">
+                <div class="section-header">
+                    <h1 class="section-title">Strategy Report</h1>
+                    <h2 class="section-subtitle">Task Updates (Due 16th Jan)</h2>
+                    <div class="timer" id="timer-8">
+                        <span class="timer-label">Time remaining:</span>
+                        <span class="timer-value">10:00</span>
+                    </div>
+                </div>
+                <div class="task-updates-content">
+                    <div class="tasks-grid">
+                        <div class="task-card" data-task-card="task-1">
+                            <h3>Registration + Policy Manager</h3>
+                            <div class="task-owner">Ares</div>
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <span class="task-label">Update all reg forms</span>
+                                    <select class="task-status-select" name="task-1-item-1">
+                                        <option value="">Status</option>
+                                        <option value="on-target">On target</option>
+                                        <option value="done">Done</option>
+                                        <option value="not-on-target">Not on Target</option>
+                                    </select>
+                                </li>
+                                <li class="task-item">
+                                    <span class="task-label">Update all reg policies</span>
+                                    <select class="task-status-select" name="task-1-item-2">
+                                        <option value="">Status</option>
+                                        <option value="on-target">On target</option>
+                                        <option value="done">Done</option>
+                                        <option value="not-on-target">Not on Target</option>
+                                    </select>
+                                </li>
+                                <li class="task-item">
+                                    <span class="task-label">Ensure everyone signs off</span>
+                                    <select class="task-status-select" name="task-1-item-3">
+                                        <option value="">Status</option>
+                                        <option value="on-target">On target</option>
+                                        <option value="done">Done</option>
+                                        <option value="not-on-target">Not on Target</option>
+                                    </select>
+                                </li>
+                            </ul>
+                            <div class="task-status">
+                                <span class="status-indicator pending">Pending</span>
+                            </div>
+                        </div>
+                        <div class="task-card" data-task-card="task-2">
+                            <h3>TS Co-ordinator</h3>
+                            <div class="task-owner">George Doyle</div>
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <span class="task-label">Update TS Notes</span>
+                                    <select class="task-status-select" name="task-2-item-1">
+                                        <option value="">Status</option>
+                                        <option value="on-target">On target</option>
+                                        <option value="done">Done</option>
+                                        <option value="not-on-target">Not on Target</option>
+                                    </select>
+                                </li>
+                            </ul>
+                            <div class="task-status">
+                                <span class="status-indicator pending">Pending</span>
+                            </div>
+                        </div>
+                        <div class="task-card" data-task-card="task-3">
+                            <h3>Tracker Manager</h3>
+                            <div class="task-owner">James?</div>
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <span class="task-label">Create KPI Graphs</span>
+                                    <select class="task-status-select" name="task-3-item-1">
+                                        <option value="">Status</option>
+                                        <option value="on-target">On target</option>
+                                        <option value="done">Done</option>
+                                        <option value="not-on-target">Not on Target</option>
+                                    </select>
+                                </li>
+                            </ul>
+                            <div class="task-status">
+                                <span class="status-indicator pending">Pending</span>
+                            </div>
+                        </div>
+                        <div class="task-card" data-task-card="task-4">
+                            <h3>Report Writer</h3>
+                            <div class="task-owner">Logan</div>
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <span class="task-label">Act on feedback</span>
+                                    <select class="task-status-select" name="task-4-item-1">
+                                        <option value="">Status</option>
+                                        <option value="on-target">On target</option>
+                                        <option value="done">Done</option>
+                                        <option value="not-on-target">Not on Target</option>
+                                    </select>
+                                </li>
+                            </ul>
+                            <div class="task-status">
+                                <span class="status-indicator pending">Pending</span>
+                            </div>
+                        </div>
+                        <div class="task-card" data-task-card="task-5">
+                            <h3>Website + Social Media</h3>
+                            <div class="task-owner">Matt</div>
+                            <ul class="task-list">
+                                <li class="task-item">
+                                    <span class="task-label">Update Website in line with handbook</span>
+                                    <select class="task-status-select" name="task-5-item-1">
+                                        <option value="">Status</option>
+                                        <option value="on-target">On target</option>
+                                        <option value="done">Done</option>
+                                        <option value="not-on-target">Not on Target</option>
+                                    </select>
+                                </li>
+                                <li class="task-item">
+                                    <span class="task-label">Gather all social media links</span>
+                                    <select class="task-status-select" name="task-5-item-2">
+                                        <option value="">Status</option>
+                                        <option value="on-target">On target</option>
+                                        <option value="done">Done</option>
+                                        <option value="not-on-target">Not on Target</option>
+                                    </select>
+                                </li>
+                            </ul>
+                            <div class="task-status">
+                                <span class="status-indicator pending">Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notes-section">
+                        <h3 class="notes-title">Notes</h3>
+                        <textarea class="notes-textarea" id="task-notes" placeholder="Add any notes or comments about the task updates here..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: What's Next for the Report? -->
+        <section class="slide" data-duration="10" data-section="Timeline">
+            <div class="slide-content">
+                <div class="section-header">
+                    <h1 class="section-title">What's Next for the Report?</h1>
+                    <div class="timer" id="timer-9">
+                        <span class="timer-label">Time remaining:</span>
+                        <span class="timer-value">10:00</span>
+                    </div>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-container">
+                        <div class="timeline-line"></div>
+                        <div class="timeline-item" data-date="17th Jan">
+                            <div class="timeline-connector timeline-connector-left"></div>
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content-box">
+                                <div class="timeline-date">17TH JANUARY</div>
+                                <h3>Review Working Groups</h3>
+                                <p>Compare against mark scheme</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-date="22nd Jan">
+                            <div class="timeline-connector timeline-connector-right"></div>
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content-box">
+                                <div class="timeline-date">22ND JANUARY</div>
+                                <h3>Presentation WG</h3>
+                                <p>Working group meeting</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-date="24th Jan">
+                            <div class="timeline-connector timeline-connector-left"></div>
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content-box">
+                                <div class="timeline-date">24TH JANUARY</div>
+                                <h3>Proof Read & Mark Scheme Check</h3>
+                                <p>Final review before submission</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item" data-date="24-25th Jan">
+                            <div class="timeline-connector timeline-connector-right"></div>
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content-box">
+                                <div class="timeline-date">24TH - 25TH JANUARY</div>
+                                <h3>Review WG</h3>
+                                <p>Final working group review</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item timeline-item-final" data-date="Submit">
+                            <div class="timeline-connector timeline-connector-left"></div>
+                            <div class="timeline-marker timeline-marker-final"></div>
+                            <div class="timeline-content-box">
+                                <div class="timeline-date">SUBMIT</div>
+                                <h3>Final Submission</h3>
+                                <p>Submit completed strategy report</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-note">
+                        <p><strong>10 days remaining</strong> from today to complete all tasks</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Checkout -->
+        <section class="slide" data-duration="5" data-section="Checkout">
+            <div class="slide-content">
+                <div class="section-header">
+                    <h1 class="section-title">Checkout</h1>
+                    <div class="timer" id="timer-10">
+                        <span class="timer-label">Time remaining:</span>
+                        <span class="timer-value">05:00</span>
+                    </div>
+                </div>
+                <div class="check-in-out-content">
+                    <label for="checkout-question" class="question-label">Question for the team:</label>
+                    <textarea id="checkout-question" class="question-input" placeholder="Enter your checkout question here...">What's one key takeaway from today's session?</textarea>
+                    <div class="question-hint">This question will be asked to everyone at the end of the session</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
